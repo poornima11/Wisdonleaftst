@@ -70,43 +70,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(false);
-                // User defined method to shuffle the array list items
                 shuffleListItems();
             }
         });
     }
 
     private void getData() {
-        // creating a new variable for our request queue
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-        // in this case the data we are getting is in the form
-        // of array so we are making a json array request.
-        // below is the line where we are making an json array
-        // request and then extracting data from each json object.
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 
                 for (int i = 0; i < response.length(); i++) {
-                    // creating a new json object and
-                    // getting each object from our json array.
+
                     try {
-                        // we are getting each json object.
                         JSONObject responseObj = response.getJSONObject(i);
 
-                        // now we get our response from API in json object format.
-                        // in below line we are extracting a string with
-                        // its key value from our json object.
-                        // similarly we are extracting all the strings from our json object.
                         String id = responseObj.getString("id");
                         String author = responseObj.getString("author");
                         String url = responseObj.getString("download_url");
                         arrayList.add(new ListModel(id,author,url));
 
                         settingAdapter(arrayList);
-                       // String courseImageURL = responseObj.getString("courseimg");
-                        //courseModalArrayList.add(new CourseModal(courseName, courseImageURL, courseMode, courseTracks));
-                        //buildRecyclerView();
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
