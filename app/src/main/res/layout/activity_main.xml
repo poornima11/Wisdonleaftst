@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:id="@+id/activity_main_header"
+    android:background="@color/teal_200"
+    android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="AUTHOR"
+            android:textSize="17dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_below="@+id/activity_main_header"
+    >
+
+
+
+
 
     <ListView
         android:id="@+id/listView"
@@ -13,3 +40,4 @@
         android:layout_height="match_parent" />
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</RelativeLayout>
